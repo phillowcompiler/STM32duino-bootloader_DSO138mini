@@ -115,14 +115,9 @@ void setupCLK(void) {
     SET_REG(FLASH_ACR, 0x00000012);
 
     /* Configure PLL */
-#if defined XTAL16M
-    // 16 MHz crystal  (using the Bit 17 PLLXTPRE=1 => HSE clock divided by 2 before PLL entry)
-    SET_REG(RCC_CFGR, GET_REG(RCC_CFGR) | 0x001F0400); /* pll=72Mhz(x9/2),APB1=36Mhz,AHB=72Mhz */
-#elif defined XTAL12M
-    // 12 MHz crystal
+#ifdef XTAL12M
     SET_REG(RCC_CFGR, GET_REG(RCC_CFGR) | 0x00110400); /* pll=72Mhz(x6),APB1=36Mhz,AHB=72Mhz */
 #else
-    // 8 MHz crystal default
     SET_REG(RCC_CFGR, GET_REG(RCC_CFGR) | 0x001D0400); /* pll=72Mhz(x9),APB1=36Mhz,AHB=72Mhz */
 #endif
 
@@ -154,15 +149,19 @@ void setupCLK(void) {
 
 
 void setupLEDAndButton (void) {
-    // SET_REG(AFIO_MAPR,(GET_REG(AFIO_MAPR) & ~AFIO_MAPR_SWJ_CFG) | AFIO_MAPR_SWJ_CFG_NO_JTAG_NO_SW);// Try to disable SWD AND JTAG so we can use those pins (not sure if this works).
+    SET_REG(AFIO_MAPR,(GET_REG(AFIO_MAPR) & ~AFIO_MAPR_SWJ_CFG) | AFIO_MAPR_SWJ_CFG_NO_JTAG_NO_SW);// Try to disable SWD AND JTAG so we can use those pins (not sure if this works).
 
 #if defined(BUTTON_BANK) && defined (BUTTON_PIN) && defined (BUTTON_PRESSED_STATE)
-    SET_REG(GPIO_CR(BUTTON_BANK,BUTTON_PIN),(GET_REG(GPIO_CR(BUTTON_BANK,BUTTON_PIN)) & crMask(BUTTON_PIN)) | BUTTON_INPUT_MODE << CR_SHITF(BUTTON_PIN));
+    SET_REG(GPIO_CR(BUTTON_BANK,BUTTON_PIN),(GPIO_CR(BUTTON_BANK,BUTTON_PIN) & crMask(BUTTON_PIN)) | BUTTON_INPUT_MODE << CR_SHITF(BUTTON_PIN));
 
     gpio_write_bit(BUTTON_BANK, BUTTON_PIN,1-BUTTON_PRESSED_STATE);// set pulldown resistor in case there is no button.
 #endif
-#if defined(LED_BANK) && defined(LED_PIN) && defined(LED_ON_STATE)
     SET_REG(GPIO_CR(LED_BANK,LED_PIN),(GET_REG(GPIO_CR(LED_BANK,LED_PIN)) & crMask(LED_PIN)) | CR_OUTPUT_PP << CR_SHITF(LED_PIN));
+#if defined TARGET_DSO138
+#define PA7_BANK    GPIOA
+#define PA7_PIN     7
+    SET_REG(GPIO_CR(PA7_BANK,PA7_PIN),(GET_REG(GPIO_CR(PA7_BANK,PA7_PIN)) & crMask(PA7_PIN)) | CR_OUTPUT_PP << CR_SHITF(PA7_PIN));
+    gpio_write_bit(PA7_BANK,PA7_PIN, 1);
 #endif
 }
 
