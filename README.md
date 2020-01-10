@@ -5,7 +5,9 @@ https://jyetech.com/dso138mini-oscilloscope-diy-kit/
 
 DSO138mini is a nice DIY kit :-).
 
-This board is on STM32F103 with TFT-LCD panel. So I think we can install "STM32duino-bootloader(Maple mini bootloader)"
+This board is on STM32F103 with TFT-LCD panel. So I think we can install "STM32duino-bootloader(Maple mini bootloader)"...
+
+## Burning
 
 You would need to wire JP1 and JP2 on DSO138mini board for to burn bootloder(binaries/dso138mini_boot20.bin).
 
