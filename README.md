@@ -9,7 +9,9 @@ This board is on STM32F103 with TFT-LCD panel. So I think we can install "STM32d
 
 ## Burning
 
-You would need to wire JP1 and JP2 on DSO138mini board for to burn bootloder(binaries/dso138mini_boot20.bin).
+Probably, you will use USB-Serial(e.g FT232RL) for burning bootloader(binaries/dso138mini_boot20.bin).
+
+In this case, You would need to wire JP1 and JP2 on DSO138mini board.
 
 <img src="https://1.bp.blogspot.com/-Ca6k3nvF7Sg/XgdYt0b7xqI/AAAAAAAAAjM/LAM2yJ10gDcqYWu3jB5F7dE7RabZF7gzwCLcBGAsYHQ/s320/short.jpg" title="wired">
 
