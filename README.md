@@ -1,6 +1,6 @@
 # STM32duino-bootloader(for DSO138mini)
 
-for JYETech DSO138mini(DIY OsilloScope Kit).
+for JYETech DSO138mini(DIY OscilloScope Kit).
 https://jyetech.com/dso138mini-oscilloscope-diy-kit/
 
 DSO138mini is a nice DIY kit :-).
