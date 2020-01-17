@@ -5,11 +5,15 @@ https://jyetech.com/dso138mini-oscilloscope-diy-kit/
 
 DSO138mini is a nice DIY kit :-).
 
-This board is on STM32F103 with TFT-LCD panel. So I think we can install "STM32duino-bootloader(Maple mini bootloader)"...
+This board is on STM32F103 with TFT-LCD panel. So I think we can install "STM32duino-bootloader ( Maple mini bootloader )"...
+
+This bootlader(**binaries/dso138mini_boot20.bin**) is customized because **USBDM(PA11)** on DSO138mini is pulled up by PA7. Therefore we should do it when booting. 
+
+<img src="https://1.bp.blogspot.com/-BUtvKdUTJ7I/XfTvzj8bkXI/AAAAAAAAAiA/DZ5vDPiIAKI6gSuEXK-784fQZAHMefBhQCLcBGAsYHQ/s320/%25E3%2582%25B9%25E3%2582%25AF%25E3%2583%25AA%25E3%2583%25BC%25E3%2583%25B3%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%2583%25E3%2583%2588_2019-12-14_23-20-48.png">
 
 ## Burning
 
-Probably, you will use USB-Serial(e.g FT232RL) for burning bootloader(binaries/dso138mini_boot20.bin).
+Probably, you will use USB-Serial(e.g FT232RL) for burning bootloader( **binaries/dso138mini_boot20.bin** ).
 
 In this case, You would need to wire JP1 and JP2 on DSO138mini board.
 
